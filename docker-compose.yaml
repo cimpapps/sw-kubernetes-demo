@@ -8,3 +8,11 @@ services:
       - 9300:9300
     environment:
       - discovery.type=single-node
+
+
+  sw-app:
+    image: cimbonda/sw-app:v3
+    ports:
+    - 8988:8989
+    environment:
+      - ELASTICSEARCH_HOST=elastic
