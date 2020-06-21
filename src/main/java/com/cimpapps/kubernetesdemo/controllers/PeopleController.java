@@ -3,6 +3,7 @@ package com.cimpapps.kubernetesdemo.controllers;
 import com.cimpapps.kubernetesdemo.api.StarWarsDataProvider;
 import com.cimpapps.kubernetesdemo.models.SwCharacter;
 import com.cimpapps.kubernetesdemo.repo.CharacterRepo;
+import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.common.unit.Fuzziness;
 import org.elasticsearch.index.query.Operator;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -26,20 +29,18 @@ public class PeopleController {
         this.swDataProvider = swDataProvider;
     }
 
+
     @GetMapping("/people")
-    public Iterable<SwCharacter> getPeople() {
-        return characterRepo.findAll();
+    public GetResponse get() {
+        return characterRepo.list();
+
     }
 
     @GetMapping("/people/search")
-    public Page<SwCharacter> searchPeople(@RequestParam String name) {
-        SearchQuery searchQuery = new NativeSearchQueryBuilder()
-                .withQuery(QueryBuilders.matchQuery("name", name)
-                        .operator(Operator.AND)
-                        .fuzziness(Fuzziness.AUTO)
-                        .prefixLength(3))
-                .build();
-        Page<SwCharacter> search = characterRepo.search(searchQuery);
+    public List<SwCharacter> searchPeople(@RequestParam String name) {
+
+        List<SwCharacter> search = characterRepo.search(name);
+
         return search;
     }
 

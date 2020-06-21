@@ -23,6 +23,6 @@ public class StarWarsDataProvider {
     public void provideData() {
         ResponseEntity<SwPeopleResponse> responseEntity = this.restTemplate.getForEntity(swHost, SwPeopleResponse.class);
         SwPeopleResponse body = responseEntity.getBody();
-        characterRepo.saveAll(body.getResults());
+        body.getResults().forEach(ch -> characterRepo.save(ch.getName(), ch));
     }
 }
