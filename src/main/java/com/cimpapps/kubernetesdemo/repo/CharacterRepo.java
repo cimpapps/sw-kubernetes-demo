@@ -3,8 +3,6 @@ package com.cimpapps.kubernetesdemo.repo;
 import com.cimpapps.kubernetesdemo.models.SwCharacter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.elasticsearch.action.get.GetRequest;
-import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
@@ -15,7 +13,6 @@ import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
-import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
@@ -49,15 +46,6 @@ public class CharacterRepo {
             restHighLevelClient.index(indexRequest, RequestOptions.DEFAULT);
         } catch (IOException e) {
             e.printStackTrace();
-        }
-    }
-
-    public GetResponse list() {
-
-        try {
-           return restHighLevelClient.get(new GetRequest(USERS_INDEX), RequestOptions.DEFAULT);
-        } catch (IOException e) {
-            return null;
         }
     }
 

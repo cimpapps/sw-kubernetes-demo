@@ -1,9 +1,10 @@
-GET http://localhost:8989/people/search?name=l
+GET http://localhost:8989/people/search?name=oby
 Accept: application/json
-
 ###
 
 GET http://localhost:8989/data
 
+###
 
-http://localhost:9200/sw/swcharacter/_search?pre_filter_shard_size=128&typed_keys=true&max_concurrent_shard_requests=5&ignore_unavailable=false&expand_wildcards=open&allow_no_indices=true&ignore_throttled=true&search_type=query_then_fetch&batched_reduce_size=512&ccs_minimize_roundtrips=true
+GET http://localhost:8989/people
+

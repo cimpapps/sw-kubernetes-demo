@@ -30,12 +30,6 @@ public class PeopleController {
     }
 
 
-    @GetMapping("/people")
-    public GetResponse get() {
-        return characterRepo.list();
-
-    }
-
     @GetMapping("/people/search")
     public List<SwCharacter> searchPeople(@RequestParam String name) {
 
