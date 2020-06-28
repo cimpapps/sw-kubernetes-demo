@@ -3,16 +3,29 @@ version: "3.0"
 services:
   elastic:
     image: elasticsearch:7.6.2
+    container_name: elastic
     ports:
       - 9200:9200
       - 9300:9300
     environment:
       - discovery.type=single-node
+    volumes:
+    - ./es-data:/usr/share/elasticsearch/data
+    - my-volume:/usr/cara2/
 
 
   sw-app:
-    image: cimbonda/sw-app:v3
+    image: cimbonda/sw-app:v5
+    container_name: sw
     ports:
-    - 8988:8989
+    - 7777:8989
     environment:
-      - ELASTICSEARCH_HOST=elastic
+      - elasticsearch.host=elastic
+    volumes:
+    - ./target:/user/shared/app/cara7
+    - my-volume:/user/shared/cara
+
+
+
+volumes:
+  my-volume: {}

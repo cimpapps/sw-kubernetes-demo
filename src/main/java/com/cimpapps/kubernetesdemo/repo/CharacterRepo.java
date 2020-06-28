@@ -46,6 +46,7 @@ public class CharacterRepo {
             restHighLevelClient.index(indexRequest, RequestOptions.DEFAULT);
         } catch (IOException e) {
             e.printStackTrace();
+            throw new IllegalArgumentException("Hostname not found");
         }
     }
 
@@ -60,9 +61,9 @@ public class CharacterRepo {
                     .collect(Collectors.toList());
         } catch (IOException e) {
             e.printStackTrace();
+            throw new IllegalArgumentException("Hostname not found");
         }
 
-        return null;
     }
 
     private SearchRequest buildSearchRequest(String term) {

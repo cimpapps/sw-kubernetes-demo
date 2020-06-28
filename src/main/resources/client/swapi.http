@@ -1,6 +1,9 @@
-GET http://localhost:8988/people/search?name=oby
+
+
+###
+GET http://localhost:7777/people/search?name=skyualker
 Accept: application/json
 ###
 
-GET http://localhost:8988/data
+GET http://localhost:7777/data
 
